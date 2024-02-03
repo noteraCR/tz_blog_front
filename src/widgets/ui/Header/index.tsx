@@ -1,24 +1,16 @@
 'use client'
+import { useUserStateStore } from '@/app/store'
 import Button from '@/shared/ui/button'
-import React from 'react'
+import React, { useCallback } from 'react'
 
-type Props = {}
-
-export default function Header({}: Props) {
+export default function Header() {
+  const { openAddPostModal } = useUserStateStore()
   const handleLogin = () => {}
-  const handleWritePost = () =>{
-    
-  }
-  return (
-    <header
-      className="fixed top-0 left-0 w-full flex flex-row-reverse items-center"
-      style={{ padding: '20px 100px', zIndex: 99 }}
-    >
-        <nav>
 
-        <Button onClick={handleWritePost} value="Написать"></Button>
-        <Button onClick={handleLogin} value="Login"></Button>
-        </nav>
+  return (
+    <header className="fixed top-0 left-0 w-full flex justify-end items-center gap-3 p-10 z-10">
+      <Button onClick={openAddPostModal}>Написать</Button>
+      <Button onClick={handleLogin}>Login</Button>
     </header>
   )
 }

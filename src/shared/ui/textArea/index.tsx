@@ -1,9 +1,6 @@
 import React from 'react'
-import './textArea.css'
-type Props = {}
+type Props = { value: string; placeholder: string }
 
-export default function TextArea({}: Props) {
-  return (
-    <div>index</div>
-  )
+export default function TextArea({ value, placeholder }: Props) {
+    return <textarea value={value} placeholder={placeholder} className='rounded-3xl w-full h-full p-3 resize-none'/>
 }

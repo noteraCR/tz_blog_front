@@ -1,18 +1,19 @@
 'use client'
+import { useUserStateStore } from '@/app/store'
 import React from 'react'
-import './button.css'
 interface Props {
-  value: string
+  children: React.ReactNode
   onClick: () => void
 }
 
-export default function Button({ value, onClick }: Props) {
+export default function Button({ children, onClick }: Props) {
+
   return (
-    <input
-      type="button"
-      className="text-gray-50 rounded-md bg-purple-600 px-3 py-2 cursor-pointer"
-      onClick={onClick}
-      value={value}
-    />
+    <button onClick={onClick} className="p-[3px] relative">
+      <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
+      <div className="px-8 py-2  bg-black rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent">
+        {children}
+      </div>
+    </button>
   )
 }
