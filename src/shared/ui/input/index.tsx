@@ -1,17 +1,11 @@
-import React, { ChangeEvent } from 'react'
-interface Props {
-  placeholder: string
-  value: string
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void
-}
+import React from 'react'
+type Props = React.InputHTMLAttributes<HTMLInputElement>
 
-export default function Input({ placeholder, value, onChange }: Props) {
+export default function Input(props: Props) {
   return (
     <input
       className="rounded-md px-3 w-full"
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
+      {...props}
     />
   )
 }
