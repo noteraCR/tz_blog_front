@@ -11,3 +11,4 @@ export const useUserStateStore = create<UserStateStore>((set) => ({
     openAddPostModal: () => set(() => ({isAddPostModalOpen: true})),
     closeAddPostModal: () => set(() => ({isAddPostModalOpen: false}))
 }))
+

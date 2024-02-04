@@ -30,7 +30,7 @@ export default function Modal({ children, isVisible }: ModalProps) {
     <AnimatePresence>
       {isVisible && (
         <div className="fixed w-screen h-screen top-0 left-0 justify-center items-center flex z-30">
-          <motion.div className="bg-gray-100 flex flex-col justify-center items-center gap-3 px-10 py-8 rounded-3xl w-4/5 h-4/5" {...defaultModalAnimation}>
+          <motion.div className="bg-gray-100 flex flex-col justify-center items-center gap-3 px-10 pt-2 pb-8 rounded-3xl w-4/5 h-4/5" {...defaultModalAnimation}>
             {children}
           </motion.div>
           <motion.div
