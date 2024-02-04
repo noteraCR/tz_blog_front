@@ -1,11 +1,13 @@
-import { create } from 'zustand'
-import { devtools, persist } from 'zustand/middleware'
-import { Post } from '..'
+import { create } from 'zustand';
+import { devtools, persist } from 'zustand/middleware';
+import handleError from '@/functions/errors';
+import { Post } from '..';
 
 export interface IGetData {
   data: Post[] | null
-  error: null
+  error: string | null
   getData: (url: string) => Promise<Post[] | null>
+  getPostsByPageDesc: (page: number) => Promise<Post[] | null>
 }
 export const useStore = create<IGetData>()(
   devtools(
@@ -15,19 +17,34 @@ export const useStore = create<IGetData>()(
         error: null,
         getData: async (url: string) => {
           try {
-            const response = await fetch(url)
-            const data = await response.json()
-            set({ data, error: null })
+            const response = await fetch(url);
+            const data = await response.json();
+            set({ data, error: null });
             return data;
-          } catch (error: any) {
-            set({ data: null, error: error.message })
+          } catch (e) {
+            const error = handleError({ e });
+            set({ data: null, error });
+            return null;
+          }
+        },
+        getPostsByPageDesc: async (page: number) => {
+          try {
+            const response = await fetch(
+              `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=10&_sort=id&_order=desc`,
+            );
+            const data = await response.json();
+            set({ data, error: null });
+            return data;
+          } catch (e) {
+            const error = handleError({ e });
+            set({ data: null, error });
             return null;
           }
         },
       }),
       {
         name: 'get-data',
-      }
-    )
-  )
-)
+      },
+    ),
+  ),
+);

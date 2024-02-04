@@ -1,8 +1,8 @@
+import 'react-virtualized/styles.css';
+import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import './globals.css'
 import Header from '@/widgets/ui/Header'
-
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="ru">
       <Header />
       <body className={inter.className}>
-        <main className="flex min-h-screen flex-col items-center px-24 pt-6">
+        <main className="flex min-h-screen flex-col items-center px-24 pt-14">
           {children}
         </main>
       </body>

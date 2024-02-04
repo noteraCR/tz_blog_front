@@ -1,15 +1,14 @@
-'use client'
-import React from 'react'
+'use client';
 
-type Props = React.ButtonHTMLAttributes<HTMLButtonElement>
-  
+import React from 'react';
+
+type Props = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export default function Button({ children, disabled, ...props }: Props) {
-
   // understand how to make disabled: tailwind work
-  const disabledButtonStyles = disabled ? "opacity-10 cursor-pointer" : ""
-  const buttonOutline = disabled ? "" : "bg-gradient-to-r from-indigo-500 to-purple-500"
-  const buttonInnerWrapper = disabled ? "" : "hover:bg-transparent transition duration-200"
+  const disabledButtonStyles = disabled ? 'opacity-10 cursor-pointer' : '';
+  const buttonOutline = disabled ? '' : 'bg-gradient-to-r from-indigo-500 to-purple-500';
+  const buttonInnerWrapper = disabled ? '' : 'hover:bg-transparent transition duration-200';
 
   return (
     <button {...props} className={`p-[3px] relative ${disabledButtonStyles}`}>
@@ -18,5 +17,5 @@ export default function Button({ children, disabled, ...props }: Props) {
         {children}
       </div>
     </button>
-  )
+  );
 }

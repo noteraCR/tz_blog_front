@@ -1,10 +1,10 @@
-import ChildrenProp from '@/shared/types/ChildrenProp'
-import React, { useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import ChildrenProp from '@/shared/types/ChildrenProp';
+import React, { useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 type ModalProps = ChildrenProp & {
   isVisible: boolean
-}
+};
 
 const defaultModalAnimation = {
   transition: { duration: 0.2, delay: 0.1, ease: 'easeInOut' },
@@ -17,14 +17,13 @@ const defaultModalAnimation = {
       duration: 0.2,
     },
   },
-}
+};
 
 export default function Modal({ children, isVisible }: ModalProps) {
-
   useEffect(() => {
-    if (isVisible) document.body.style.overflow = "hidden"
-    else if (isVisible) document.body.style.overflow = "scroll"
-  }, [isVisible])
+    if (isVisible) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = 'auto';
+  }, [isVisible]);
 
   return (
     <AnimatePresence>
@@ -35,12 +34,12 @@ export default function Modal({ children, isVisible }: ModalProps) {
           </motion.div>
           <motion.div
             {...defaultModalAnimation}
-            initial={{ opacity: 0, scale: 1}}
-            animate={{opacity: 0.5}}
+            initial={{ opacity: 0, scale: 1 }}
+            animate={{ opacity: 0.5 }}
             className="absolute w-full h-full bg-gray-900 opacity-50 z-[-1]"
           />
         </div>
       )}
     </AnimatePresence>
-  )
+  );
 }

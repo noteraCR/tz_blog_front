@@ -1,5 +1,6 @@
-import React from 'react'
-type Props = React.InputHTMLAttributes<HTMLInputElement>
+import React from 'react';
+
+type Props = React.InputHTMLAttributes<HTMLInputElement>;
 
 export default function Input(props: Props) {
   return (
@@ -7,5 +8,5 @@ export default function Input(props: Props) {
       className="rounded-md px-3 w-full focus-visible:outline-none"
       {...props}
     />
-  )
+  );
 }

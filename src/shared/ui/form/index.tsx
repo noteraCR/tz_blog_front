@@ -1,8 +1,9 @@
-import React from 'react'
-type Props = {}
+import React from 'react';
+
+type Props = {};
 
 export default function Form({}: Props) {
   return (
     <div>index</div>
-  )
+  );
 }

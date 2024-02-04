@@ -1,13 +1,38 @@
-import React from 'react'
-import { Post } from '@/models/Post'
-type Props = { post: Post }
+import React, { useOptimistic } from 'react';
+import { Post } from '@/models/Post';
+import Link from 'next/link';
+import { usePostModal } from '@/app/store';
+import Modal from '../modal';
 
-export default function Card({ post: { title, body, id } }: Props) {
+type Props = { post?: Post };
+
+export default function Card({ post }: Props) {
+  const { openPostModal } = usePostModal();
+  if (!post) return null;
+
+  const { title, body, id } = post;
+
+  const openModal = () => {
+    openPostModal({ ...post });
+  };
   return (
-    <div className="w-full bg-gray-100 mb-4 rounded-md p-4">
-        <p>{id}</p>
+    <div
+      className="w-full bg-gray-100 hover:bg-gray-200 cursor-pointer mb-4 rounded-md p-4"
+      onClick={openModal}
+    >
+      <p>{id}</p>
+
       <h3 className="mb-2 font-bold text-xl">{title}</h3>
-      <p>{body}</p>
+      <p
+        className="text-ellipsis overflow-hidden"
+        style={{
+          WebkitBoxOrient: 'vertical',
+          WebkitLineClamp: 1,
+          display: '-webkit-box',
+        }}
+      >
+        {body}
+      </p>
     </div>
-  )
+  );
 }
